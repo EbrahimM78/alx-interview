@@ -1,20 +1,21 @@
 #!/usr/bin/python3
-"""method that determines if all the boxes can be opened"""
+'''
+This module houses a function that solves a lockboxes puzzle.
+'''
+
 
 def canUnlockAll(boxes):
+    '''
+    The functions return true or false is all the boxes can be opened or not.
+    '''
 
-    if (type(boxes) is not list):
-        return False
+    unlocked_boxes = [0]
 
-    if (len(boxes) == 0):
-        return False
+    if len(boxes) > 1:
+        for box in unlocked_boxes:
+            for key in boxes[box]:
+                if key not in unlocked_boxes and key < len(boxes):
+                    unlocked_boxes.append(key)
 
-    keys = [0]
-    for i in keys:
-        for j in boxes[i]:
-            if j not in keys and j != i and j < len(boxes) and j != 0:
-                keys.append(j)
-    if len(keys) == len(boxes):
-        return True
-    else:
-        return False
+        return len(unlocked_boxes) == len(boxes)
+    return True
